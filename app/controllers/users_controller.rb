@@ -14,12 +14,26 @@ class UsersController < ApplicationController
     redirect_to user_path
   end
 
-  def index
-    @user = user.all
+  def edit
+    @user = User.find(params[:id])
+
   end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to users_path
+  end
+
+
+  def index
+    @user = current_user
+    @users = User.all
+  end
+
 private
 
-  def post_user_params
-    params.require(:user).permit(:shop_name, :image, :caption)
+  def user_params
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 end
