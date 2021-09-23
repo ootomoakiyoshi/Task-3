@@ -1,24 +1,4 @@
-<div class="container px-5 px-sm-0">  <!-- この行を追加 -->
-  <div class="row">   <!-- この行を追加 -->
-   <div class="col-md-3">
-<p>User info</p>
-  <%= attachment_image_tag @user, :profile_image ,fallback: "no_image.jpg" %>
-  <p>name:<%= @user.name %></p>
-  <p>introduction : <%= @user.introduction %></p>
-
-<%= link_to edit_user_path(@user), class: "btn btn-secondary" do %>
-<i class="fas fa-user-cog"></i>
-<% end %>
-  <!--Bookersから-->
-<h2>New book</h2>
-<%= form_with model:@book, local:true do |f| %>
-<h6>Title</h6>
-<%= f.text_area :title%>
-<h6>Opinion</h6>
-<%= f.text_area :body %>
-<p><%= f.submit 'Create Book' ,class: "btn btn-success" %></p>
-<% end %>
-  </div>
+ <%= render 'users/list', user:@user %>
 
   <div class="col-md-8 offset-md-1">
 <h1>Users</h1>
@@ -32,9 +12,9 @@
   <tbody>
     <% @users.each do |user| %>
     <tr>
-      <td><%= attachment_image_tag user, :profile_image ,fallback: "no_image.jpg" %></td>
+      <td><%= attachment_image_tag @user, :profile_image ,fallback: "no_image.jpg" %></td>
       <td><%= user.name %></td>
-      <td>  <%= link_to "show", user_path(@user_id) %></td>
+      <td>  <%= link_to "show", user_path(@user.id) %></td>
     </tr>
     <% end %>
   </tbody>

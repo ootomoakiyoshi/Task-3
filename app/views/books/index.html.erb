@@ -1,10 +1,25 @@
+ <%= render 'users/list', user:@user %>
+
+ <div class="col-md-8 offset-md-1">
 <h1>Books</h1>
-<% @books.each do |book| %>
-<p>Title</p>
-<span><%= book.title %></span>
-<h1>Opinion</h1>
-<span><%= book.body %></span>
-
-<% end %>
-
-<foot>CopyRight Infratop.inc</foot>
+ <table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th class="Title">Title</th>
+      <th class="Opinion">Opinion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+    <tr>
+      <td><%= attachment_image_tag @user, :profile_image ,fallback: "no_image.jpg" %></td>
+      <td><%= link_to book.title, book_path(book) %></td>
+      <td><%=  book.body %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+  </div>
+</div>
