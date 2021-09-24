@@ -3,8 +3,8 @@
    <div class="col-md-3">
 <p>User info</p>
   <%= attachment_image_tag @user, :profile_image ,fallback: "no_image.jpg" %>
-  <p>name:<%= @user.name %></p>
-  <p>introduction : <%= @user.introduction %></p>
+  <p>name:<%= @users.name %></p>
+  <p>introduction :<%= @users.introduction %></p>
 
 <%= link_to edit_user_path(@user), class: "btn btn-secondary" do %>
 <i class="fas fa-user-cog"></i>
