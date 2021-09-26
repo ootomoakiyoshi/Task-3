@@ -2,16 +2,28 @@
   <div class="row">   <!-- この行を追加 -->
    <div class="col-md-3">
 <p>User info</p>
-  <%= attachment_image_tag @user, :profile_image ,fallback: "no_image.jpg" %>
-  <p>name:<%= @users.name %></p>
-  <p>introduction :<%= @users.introduction %></p>
+  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+  <table class="table">
+  <tr>
+    <th>name</th>
+    <th><%= user.name %></th>
+  </tr>
+  <tr>
+    <th>introduction</th>
+    <th><%= user.introduction %></th>
+  </tr>
+  <tr>
+    <th>
+      <%= link_to edit_user_path(user),class:"btn btn-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+    </th>
+  </tr>
+  </table>
 
-<%= link_to edit_user_path(@user), class: "btn btn-secondary" do %>
-<i class="fas fa-user-cog"></i>
-<% end %>
 
 <h2>New book</h2>
-<%= form_with model:@book, local:true do |f| %>
+<%= form_with model:book, local:true do |f| %>
 <h6>Title</h6>
 <%= f.text_area :title%>
 <h6>Opinion</h6>
