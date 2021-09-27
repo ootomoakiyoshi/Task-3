@@ -15,9 +15,9 @@
    <br><label for="Opinion">Opinion</label>
   <br><%= f.text_field :body, autofocus: true, id:"body", placeholder:"Opinion"%>
   <br><%= f.submit "Update Book" %>
-   <br><td>  <%= link_to "show", user_path(@user.id) %></td>
+   <br><td>  <%= link_to "Show", book_path(@book) %></td>
    |
-   <td>  <%= link_to "back", book_path(@book) %></td>
+   <td>  <%= link_to "Back", books_path %></td>
 <% end %>
    </div>
   </div>

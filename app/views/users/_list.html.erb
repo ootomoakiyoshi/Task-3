@@ -1,6 +1,9 @@
 <div class="container px-5 px-sm-0">  <!-- この行を追加 -->
   <div class="row">   <!-- この行を追加 -->
    <div class="col-md-3">
+     <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
 <p>User info</p>
   <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
   <table class="table">

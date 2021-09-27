@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+   before_action :ensure_current_user, {only: [:edit]}
+
+  def ensure_current_user
+  if current_user.id != params[:id].to_i
+    redirect_to user_path(current_user)
+  end
+  end
+
   def new
     @user = User.new
   end
@@ -16,8 +24,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path
+    if @user.update(user_params)
+     redirect_to user_path(@user.id), notice:"You have updated user successfully."
+    else
+      @users = current_user
+      render :edit
+    end
   end
 
   def index

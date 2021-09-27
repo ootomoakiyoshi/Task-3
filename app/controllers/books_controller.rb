@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
     before_action :authenticate_user!
+
   def new
     @book = Book.new
     @book = Book.all
@@ -10,7 +11,7 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     if
      @book.save
-      flash[:notice] = "Book was successfully created." #フラッシュ文リダイレクと前に
+      flash[:notice] = "You have created book successfully.." #フラッシュ文リダイレクと前に
       redirect_to book_path(@book.id)
     else
       @books=Book.all
@@ -33,17 +34,21 @@ class BooksController < ApplicationController
 
    def edit
     @book = Book.find(params[:id])
+    if current_user.id != @book.user.id
+     redirect_to books_path
+    end
     @user = current_user
    end
 
    def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-     redirect_to book_path(@book.id), notice:"You have updated book successfully."
-     else
+     flash[:success] = "You have updated book successfully"
+     redirect_to book_path(@book.id)
+    else
        @user = current_user
        render :edit
-     end
+    end
    end
 
    def destroy
