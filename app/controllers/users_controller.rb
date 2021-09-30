@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) #ユーザー情報からid習得
     @newbook = Book.new
     @books = @user.books
 
